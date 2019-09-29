@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>最长回文子串</title>
+</head>
+<body>
+给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+
+示例 1：
+
+输入: "babad"
+输出: "bab"
+注意: "aba" 也是一个有效答案。
+
+示例 2：
+
+输入: "cbbd"
+输出: "bb"
+
+
+</body>
+<script>
+    /**
+     * @param {string} s
+     * @return {string}
+     */
+    // var a = 'abcdef';
+    var a = 'aba';
+    var b = 'cbbdwasdfsdlkjdfhjkadfkjhsadfkjhasdkfjhasdkjfhlsakdjhfksadljhflksadjhflkjsadhflsakjdhflskadfjafsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasdfsdalkjfhlkasdhflkjasdhflkjsahflkjashdflkajsdhfabvadsfjhasfasadsdadasdasdsadasdasdasfafsfadasasdasdasd' ;
+    var c = "tattarrattat";
+    var d = "anugnxshgonmqydttcvmtsoaprxnhpmpovdolbidqiyqubirkvhwppcdyeouvgedccipsvnobrccbndzjdbgxkzdbcjsjjovnhpnbkurxqfupiprpbiwqdnwaqvjbqoaqzkqgdxkfczdkznqxvupdmnyiidqpnbvgjraszbvvztpapxmomnghfaywkzlrupvjpcvascgvstqmvuveiiixjmdofdwyvhgkydrnfuojhzulhobyhtsxmcovwmamjwljioevhafdlpjpmqstguqhrhvsdvinphejfbdvrvabthpyyphyqharjvzriosrdnwmaxtgriivdqlmugtagvsoylqfwhjpmjxcysfujdvcqovxabjdbvyvembfpahvyoybdhweikcgnzrdqlzusgoobysfmlzifwjzlazuepimhbgkrfimmemhayxeqxynewcnynmgyjcwrpqnayvxoebgyjusppfpsfeonfwnbsdonucaipoafavmlrrlplnnbsaghbawooabsjndqnvruuwvllpvvhuepmqtprgktnwxmflmmbifbbsfthbeafseqrgwnwjxkkcqgbucwusjdipxuekanzwimuizqynaxrvicyzjhulqjshtsqswehnozehmbsdmacciflcgsrlyhjukpvosptmsjfteoimtewkrivdllqiotvtrubgkfcacvgqzxjmhmmqlikrtfrurltgtcreafcgisjpvasiwmhcofqkcteudgjoqqmtucnwcocsoiqtfuoazxdayricnmwcg";
+    console.log(d);
+    console.log(c);
+    var max_len = '';
+    var longestPalindrome = function (s) {
+        if (s.length === 0) {
+            return max_len;
+        }
+        for (let i = 0; i < s.length; i++) {
+            if (s.charAt(i + 1) && s.charAt(i + 1) === s.charAt(i)) {
+                find1(s, i);
+            }
+            find(s, i);
+        }
+        return max_len;
+    };
+    var find = function (s, index) {
+        if (index === 0 || index === s.length - 1) {
+            max_len = s.charAt(index).length > max_len.length ? s.charAt(index) : max_len;
+        } else {
+            for (let i = index - 1; i >= 0; i--) {
+                let len = index - i + 1;
+                if (s.substr(index, len).length === len) {
+                    if (s.substr(index, len) === s.substr(i, len).split('').reverse().join('')) {
+                        let sss = s.substr(i, len);
+                        let n = sss + sss.split('').reverse().join('').substr(1,sss.length-1);
+                        max_len = n.length > max_len.length ? n : max_len;
+                    }
+                }
+            }
+        }
+        return max_len;
+    };
+    var find1 = function (s, index) {
+
+        for (let i = index; i >= 0; i--) {
+            if(index === 5){
+                console.log(i,index - i + 1,s.substr(i, index - i + 1),s.substr(index+1, index - i + 1));
+
+            }
+            let len = index - i + 1;
+            if (s.substr(index, len).length === len) {
+                // console.log(s.substr(i, len));
+                if (s.substr(i, len) === s.substr(index + 1, len).split('').reverse().join('')) {
+                    var news = s.substr(i, len)+s.substr(index+1, len);
+                    max_len = news.length > max_len.length ? news : max_len;
+                }
+            }
+        }
+        return max_len;
+    };
+
+    console.log(longestPalindrome(d));
+</script>
+</html>
