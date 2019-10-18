@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var searchRange = function (nums, target) {
+        let result = [-1, -1];
+        let len = nums.length;
+        if (len === 0) return result;
+        let l = 0, r = len - 1;
+        while (l < r) {
+            let mid = (l + r) / 2 | 0;
+            target <= nums[mid]?r = mid:l = mid + 1;
+        }
+        if (nums[l] !== target) return result;
+        result[0] = l;
+
+        r = len - 1;
+        while (l < r) {
+            let mid = (l + r) / 2 | 0;
+            target >= nums[mid]?l = mid + 1:r = mid;
+        }
+        nums[r] === target?result[1] = r:result[1] = r-1;
+
+        return result;
+    };
+
+
+let nums1 = [5,7,7,8,8,10];
+let nums2 = [1];
+let nums3 = [1,2,3];
+let nums4 =  [1,2,3,3,3,3,4,5,9];
+
+    // console.log(searchRange(nums1, 8));
+    // console.log(searchRange(nums2, 1));
+    // console.log(searchRange(nums3, 2));
+    console.log(searchRange(nums4, 3));
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+var nums = [3,2,2,3];
+var val = 3;
+//方法一
+// var removeElement = function(nums, val) {
+//     if(nums.length == 1 && nums[0] == val){
+//         nums.pop();
+//         return nums.length
+//     }
+//     let left = 0,right = nums.length-1;
+//     while(left <= right){
+//         if(nums[left] === val){
+//             nums[left] = nums[right];
+//             nums.pop();
+//             right--;
+//         }else{
+//             left++;
+//         }
+//     }
+//
+//     return nums.length
+// };
+
+//方法二
+var removeElement = function(nums, val) {
+    let i = 0;
+    for(let num of nums){
+        if(num !== val){
+            nums[i] = num;
+            i++;
+        }
+    }
+    return i;
+};
+
+
+console.log(removeElement(nums, val));
+</script>
+</body>
+</html>
