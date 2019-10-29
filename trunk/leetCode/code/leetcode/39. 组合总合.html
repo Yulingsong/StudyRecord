@@ -42,8 +42,11 @@ candidates 中的数字可以无限制重复被选取。
     var candidates = [2,3,5,9], target = 8;
     var combinationSum = function(candidates, target) {
         candidates = candidates.sort((a,b) => {return a-b});
-        candidates = candidates.sort((item)=>{return item <= target});
-        console.log(candidates);
+        candidates = candidates.filter((item)=>{return item <= target});
+
+        for(let i = 0;i < candidates.length;i++){
+
+        }
 
 
     };
